@@ -1,0 +1,27 @@
+diff --git a/drivers/staging/media/lirc/Kconfig b/drivers/staging/media/lirc/Kconfig
+index f57464a..a2d4cf0 100644
+--- a/drivers/staging/media/lirc/Kconfig
++++ b/drivers/staging/media/lirc/Kconfig
+@@ -83,5 +83,13 @@ config LIRC_GPIO
+ 	  Driver for GPIOLIB enabled gpio chip. Module setup for and tested
+ 	  on Allwinner A10 Gpio SOC.
+ 	  change/redefine LIRC_GPIO_ID_STRING to the correct gpiochip label
++	  
++config LIRC_SUNXI_RAW
++	tristate "LIRC for sunxi CIR interface"
++	depends on LIRC
++	help
++	  Driver for Allwinner's native CIR interface, passing
++	  data (almost) unfiltered to LIRC device
++	
+ 
+ endif
+diff --git a/drivers/staging/media/lirc/Makefile b/drivers/staging/media/lirc/Makefile
+index e729ad0..e59bcfc 100644
+--- a/drivers/staging/media/lirc/Makefile
++++ b/drivers/staging/media/lirc/Makefile
+@@ -13,3 +13,4 @@ obj-$(CONFIG_LIRC_SIR)		+= lirc_sir.o
+ obj-$(CONFIG_LIRC_TTUSBIR)	+= lirc_ttusbir.o
+ obj-$(CONFIG_LIRC_ZILOG)	+= lirc_zilog.o
+ obj-$(CONFIG_LIRC_GPIO)		+= lirc_gpio.o
++obj-$(CONFIG_LIRC_SUNXI_RAW)	+= sunxi-lirc.o
